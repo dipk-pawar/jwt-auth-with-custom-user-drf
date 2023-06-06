@@ -18,3 +18,11 @@ class UserSerializers(serializers.ModelSerializer):
 
     def create(self, validate_data):
         return User.objects.create_user(**validate_data)
+
+
+class LoginSerializers(serializers.ModelSerializer):
+    email = serializers.CharField(max_length=50)
+
+    class Meta:
+        model = User
+        fields = ["email", "password"]
