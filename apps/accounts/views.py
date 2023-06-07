@@ -1,14 +1,19 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from apps.accounts.serializers import UserSerializers, LoginSerializers
+from apps.accounts.serializers import (
+    UserSerializers,
+    LoginSerializers,
+    UserProfileSerializers,
+)
 from rest_framework import status
 from django.contrib.auth import authenticate
 from jwt_auth_pr.jwt_custom_token import get_tokens_for_user
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
-class UserAPIView(APIView):
+class RegisterUserAPIView(APIView):
     def post(self, request):
         serializer = UserSerializers(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -43,5 +48,16 @@ class LoginAPIView(APIView):
         tokens = get_tokens_for_user(user=user)
         return Response(
             {"tokens": tokens, "message": "Login successfully"},
+            status=status.HTTP_200_OK,
+        )
+
+
+class UserProfileAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserProfileSerializers(request.user)
+        return Response(
+            {"data": serializer.data},
             status=status.HTTP_200_OK,
         )
