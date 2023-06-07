@@ -1,0 +1,2 @@
+EMAIL_USER = # Your email id
+SENDGRID_API_KEY = # Your sendgrid API key

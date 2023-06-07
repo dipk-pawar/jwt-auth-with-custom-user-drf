@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "870209de-5627-4bc3-8b57-d875823b81ba",
+		"name": "JWT with custom user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27746278"
+	},
+	"item": [
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "superuser",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"value": "superser",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"your_email@example.com\",\n    \"name\":\"your name\",\n    \"is_tc\":true,\n    \"phone_no\":9999999999,\n    \"password\":\"12345\",\n    \"password2\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"register",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "superuser",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "superuser",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"your_email@example.com\",\n    \"password\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MTIwOTcyLCJpYXQiOjE2ODYxMjA2NzIsImp0aSI6IjZhYWJmMmQ1MWFhNTQxODZiZjY0Yjk5MTA0NTlhYmFmIiwidXNlcl9pZCI6M30.gExcc9ubvkYzao2dYNmkjJjLyCNsfQIzrBGV0yc0Jtg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/user-profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"user-profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg2MTI1ODY0LCJpYXQiOjE2ODYxMjI4NjQsImp0aSI6IjA3YzA3YTc4MGRhMjQ3YmJiY2EzMzk1ZmMzNTlkZTMzIiwidXNlcl9pZCI6M30.NyzOlQ4esuplMMnIV61UlqoB6oM3QxR82PkR6X_UGl4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"old_password\":\"12345\",\n    \"new_password\":\"123456\",\n    \"confirm_password\":\"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/change-password/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"change-password",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send reset password email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"your_email@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/send-reset-password-link/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"send-reset-password-link",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\":\"12345678\",\n    \"confirm_password\":\"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/reset-password/Mw/bpf5ut-253bd0a70b429eea0aa12a0eee1e74bb/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"reset-password",
+						"Mw",
+						"bpf5ut-253bd0a70b429eea0aa12a0eee1e74bb",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

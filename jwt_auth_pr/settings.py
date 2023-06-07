@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -142,5 +143,10 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 AUTH_USER_MODEL = "accounts.User"
-
 SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": timedelta(minutes=50)}
+PASSWORD_RESET_TIMEOUT = 900  # time in second means 900 sec = 15 Min
+
+
+# Email settings
+EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
